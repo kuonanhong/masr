@@ -18,7 +18,7 @@ def train(
     train_index_path="train.index",
     dev_index_path="dev.index",
     labels_path="labels.json",
-    learning_rate=0.6,
+    learning_rate=0.1,
     momentum=0.8,
     max_grad_norm=0.2,
     weight_decay=0,
@@ -117,4 +117,5 @@ if __name__ == "__main__":
     model = GatedConv(vocabulary)
     model.to("cuda")
     batch_size = int(sys.argv[1]) if len(sys.argv) > 1 else 50
+    learning_rate= int(sys.argv[2]) if len(sys.argv) > 2 else 0.1
     train(model, batch_size=batch_size)
