@@ -56,7 +56,7 @@ class MASRDataset(Dataset):
         wav, transcript = self.idx[index]
         wav = load_audio(wav)
         spect = spectrogram(wav)
-        transcript = list(filter(None, [self.labels.get(x) for x in transcript]))
+        transcript = list(filter(None, [self.labels.get(x) for x in transcript.split(' ')]))
 
         return spect, transcript
 

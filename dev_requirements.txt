@@ -1,0 +1,9 @@
+torch==1.0.1
+librosa
+numpy
+python-levenshtein-wheels
+tqdm
+tensorboard
+tensorboardX
+wget
+pysoundfile
