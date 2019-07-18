@@ -110,7 +110,7 @@ def eval(model, dataloader):
 
 
 if __name__ == "__main__":
-    with open("abels.json") as f:
+    with open("labels.json") as f:
         vocabulary = json.load(f)
         vocabulary = "".join(vocabulary)
     model = GatedConv(vocabulary)
