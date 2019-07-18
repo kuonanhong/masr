@@ -13,7 +13,7 @@ import json
 def train(
     model,
     epochs=100,
-    batch_size=32,
+    batch_size=56,
     train_index_path="train.index",
     dev_index_path="dev.index",
     labels_path="labels.json",
