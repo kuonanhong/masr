@@ -117,5 +117,5 @@ if __name__ == "__main__":
     model = GatedConv(vocabulary)
     model.to("cuda")
     batch_size = int(sys.argv[1]) if len(sys.argv) > 1 else 50
-    learning_rate= int(sys.argv[2]) if len(sys.argv) > 2 else 0.1
+    learning_rate= float(sys.argv[2]) if len(sys.argv) > 2 else 0.1
     train(model, batch_size=batch_size)
