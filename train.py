@@ -8,12 +8,13 @@ from warpctc_pytorch import CTCLoss
 import tensorboardX as tensorboard
 import torch.nn.functional as F
 import json
+import sys
 
 
 def train(
     model,
     epochs=100,
-    batch_size=56,
+    batch_size=50,
     train_index_path="train.index",
     dev_index_path="dev.index",
     labels_path="labels.json",
@@ -115,4 +116,5 @@ if __name__ == "__main__":
         vocabulary = "".join(vocabulary)
     model = GatedConv(vocabulary)
     model.to("cuda")
-    train(model)
+    batch_size = int(sys.argv[1]) if len(sys.argv) > 1 else 50
+    train(model, batch_size=batch_size)
