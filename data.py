@@ -16,10 +16,10 @@ hop_length = int(sample_rate * window_stride)
 window = "hamming"
 
 
-def load_audio(wav_path, normalize=True):  # -> numpy array
+def load_audio(wav_path, normalize=False):  # -> numpy array
     with wave.open(wav_path) as wav:
         wav = np.frombuffer(wav.readframes(wav.getnframes()), dtype="int16")
-        wav = wav.astype("float")
+        wav = wav.astype("float") / (1<<15)
     if normalize:
         return (wav - wav.mean()) / wav.std()
     else:
