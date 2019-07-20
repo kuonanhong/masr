@@ -1,3 +1,4 @@
+import json
 import torch
 import torch.nn as nn
 from torch.nn.utils import weight_norm
@@ -24,6 +25,16 @@ class ConvBlock(nn.Module):
 class GatedConv(MASRModel):
     """ This is a model between Wav2letter and Gated Convnets.
         The core block of this model is Gated Convolutional Network"""
+
+    @classmethod
+    def restore(cls, model_path, label_path):
+        model = torch.load(model_path, map_location='cpu')
+
+        with open(label_path) as f:
+            labels = json.load(f)
+        m = cls(labels)
+        m.load_state_dict(model.state_dict())
+        return m
 
     def __init__(self, vocabulary, blank=0, name="masr"):
         """ vocabulary : str : string of all labels such that vocaulary[0] == ctc_blank  """

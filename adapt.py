@@ -111,10 +111,7 @@ def eval(model, dataloader):
 
 
 if __name__ == "__main__":
-    with open("labels.json") as f:
-        vocabulary = json.load(f)
-        vocabulary = "".join(vocabulary)
-    model = GatedConv(vocabulary)
+    model = GatedConv.restore('model.pth', 'labels.json')
     model.to("cuda")
     batch_size = int(sys.argv[1]) if len(sys.argv) > 1 else 64
     learning_rate= float(sys.argv[2]) if len(sys.argv) > 2 else 0.6
